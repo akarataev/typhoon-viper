@@ -1,0 +1,55 @@
+//
+//  {{ prefix }}{{ module_info.name }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import UIKit
+import Typhoon
+
+class {{ module_info.name }}ModuleConfigurator: TyphoonAssembly {
+
+    @objc public dynamic func configure{{ module_info.name }}ViewController() -> Any {
+        return TyphoonDefinition.withClass({{ module_info.name }}ViewController.self) {
+            definition in
+            definition?.injectProperty(
+                Selector(("output")),
+                with: self.configure{{ module_info.name }}Presenter()
+            )
+        }
+    }
+
+    @objc public dynamic func configure{{ module_info.name }}Presenter() -> Any {
+        return TyphoonDefinition.withClass({{ module_info.name }}Presenter.self) {
+            definition in
+            definition?.injectProperty(
+                #selector(getter: UITouch.view),
+                with: self.configure{{ module_info.name }}ViewController()
+            )
+            definition?.injectProperty(
+                Selector(("interactor")),
+                with: self.configure{{ module_info.name }}Interactor()
+            )
+            definition?.injectProperty(
+                Selector(("router")),
+                with: self.configure{{ module_info.name }}Router()
+            )
+        }
+    }
+
+    @objc public dynamic func configure{{ module_info.name }}Router() -> Any {
+        return TyphoonDefinition.withClass({{ module_info.name }}Router.self)
+    }
+
+    @objc public dynamic func configure{{ module_info.name }}Interactor() -> Any {
+        return TyphoonDefinition.withClass({{ module_info.name }}Interactor.self) {
+            definition in
+            definition?.injectProperty(
+                Selector(("output")),
+                with: self.configure{{ module_info.name }}Presenter()
+            )
+        }
+    }
+}

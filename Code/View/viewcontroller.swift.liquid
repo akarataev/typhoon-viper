@@ -1,0 +1,23 @@
+//
+//  {{ module_info.name }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import UIKit
+
+class {{ module_info.name }}ViewController: UIViewController, {{module_info.name}}ViewInput {
+
+    @objc var output: {{ module_info.name }}ViewOutput!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        output.viewIsReady()
+    }
+
+    func setupInitialState() {
+
+    }
+}

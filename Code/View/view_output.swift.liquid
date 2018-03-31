@@ -1,0 +1,27 @@
+//
+//  {{ module_info.name }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import UIKit
+import Foundation
+
+@objc protocol {{ module_info.name }}ViewOutput {
+    func viewIsReady()
+    func viewIsPrepareToSegue(segue: UIStoryboardSegue)
+}
+
+
+// MARK: - setup {{ module_info.name }}Presenter for routing
+
+extension {{ module_info.name }}Presenter {
+
+    func viewIsPrepareToSegue(segue: UIStoryboardSegue) {
+        router.passData (
+            segue: segue
+        )
+    }
+}
